@@ -1,6 +1,7 @@
-# dependencies
-node_modules/
-.vscode/
-.idea/
-.wix/
-jsconfig.json
+node_modules
+.next
+out
+build
+.env*.local
+.DS_Store
+*.log
