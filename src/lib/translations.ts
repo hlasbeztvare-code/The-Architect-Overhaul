@@ -51,35 +51,35 @@ export const translations = {
   services: {
     title: { SK: "Naše služby", EN: "Our Services", GA: "Seirbhísí" },
     items: [
-      { 
-        id: "ppc", 
-        SK: "PPC reklama / Online reklama", 
-        EN: "PPC & Performance", 
-        price: "500€+", 
+      {
+        id: "ppc",
+        SK: "PPC reklama / Online reklama",
+        EN: "PPC & Performance",
+        price: "500€+",
         bullets: [
           "Facebook reklama", "Instagram reklama", "TikTok reklama", "Google reklama", "YouTube reklama", "Cenové porovnávače", "High-Risk Marketing"
         ],
-        desc: { SK: "Strategický výkonnostný marketing s dôrazom na ROI.", EN: "Strategic marketing focused on ROI.", GA: "ROI." } 
+        desc: { SK: "Strategický výkonnostný marketing s dôrazom na ROI.", EN: "Strategic marketing focused on ROI.", GA: "ROI." }
       },
-      { 
-        id: "aoe", 
-        SK: "AOE / GEO Targeting", 
-        EN: "AI & Search Domination", 
-        price: "350€+", 
+      {
+        id: "aoe",
+        SK: "AOE / GEO Targeting",
+        EN: "AI & Search Domination",
+        price: "350€+",
         bullets: [
           "Zobrazenie značky v AI nástrojoch (ChatGPT, Perplexity)", "Získavanie zákazníkov s vysokým nákupným úmyslom", "Vytváranie odpovedí na nákupné otázky", "Dlhodobá viditeľnosť bez závislosti od reklám"
         ],
-        desc: { SK: "Budúcnosť vyhľadávania je v odpovediach, nie odkazoch.", EN: "The future is answers, not links.", GA: "AI." } 
+        desc: { SK: "Budúcnosť vyhľadávania je v odpovediach, nie odkazoch.", EN: "The future is answers, not links.", GA: "AI." }
       },
-      { 
-        id: "web", 
-        SK: "Usmerňovacia konzultácia & audit", 
-        EN: "Consultation & Audit", 
-        price: "1500€+", 
+      {
+        id: "web",
+        SK: "Usmerňovacia konzultácia & audit",
+        EN: "Consultation & Audit",
+        price: "1500€+",
         bullets: [
           "Okamžité riešenie pálčivého problému", "Blesková analýza dát a modelu", "Odhalenie únikov marže", "Audit analytiky (GA4, GTM, Meta Pixel)", "Zvyšovanie AOV"
         ],
-        desc: { SK: "Programujeme predajné lieviky a e-shopy na Shoptete.", EN: "Custom sales funnels.", GA: "Funnel." } 
+        desc: { SK: "Programujeme predajné lieviky a e-shopy na Shoptete.", EN: "Custom sales funnels.", GA: "Funnel." }
       }
     ]
   },
@@ -108,10 +108,10 @@ export const translations = {
   portfolio: {
     title: { SK: "Prípadové štúdie", EN: "Case Studies", GA: "Staidéir Cháis" },
     clients: [
-      { 
-        name: "Protein.sk", 
-        tag: "European Search Awards Shortlist", 
-        desc: { 
+      {
+        name: "Protein.sk",
+        tag: "European Search Awards Shortlist",
+        desc: {
           SK: "Kompletný Performance management. Expandovali sme do CZ s rekordným PNO.",
           EN: "Expanded to CZ with record PNO.",
           GA: "Protein."
@@ -123,18 +123,6 @@ export const translations = {
     title: { SK: "Odoberajte naše novinky", EN: "Subscribe to news", GA: "Nuachtlitir" },
     text: { SK: "Budeme vám posielať len to podstatné zo sveta marketingu. Zabudnite na spam.", EN: "Only essential marketing news. No spam.", GA: "Gan spam." },
     cta: { SK: "Odoberať", EN: "Subscribe", GA: "Liostáil" }
-  },
-  testimonials: {
-    items: [
-      {
-        tag: { SK: "TRANSPARETNOSŤ • KOMUNIKÁCIA AJ V ANGLIČTINE • LOAJALNOSŤ", EN: "TRANSPARENCY • ENGLISH FLUENCY • LOYALTY" },
-        text: { 
-          SK: "Chcel by som sa podeliť o svoju vynikajúcu skúsenosť s pánom Belianským, ktorý mi pomohol s nastavením marketingu na Facebooku. Od začiatku bol veľmi profesionálny a priateľský. Jeho profesionálny a osobný prístup skutočne robí zázraky!",
-          EN: "I would like to share my excellent experience with Mr. Beliansky, who helped me set up marketing on Facebook. From the start, he was very professional and friendly. His professional and personal approach truly works wonders!"
-        },
-        author: { SK: "Spokojný klient", EN: "Satisfied Client" }
-      }
-    ]
   },
   contact: {
     title: { SK: "KONTAKTUJTE NÁS", EN: "CONTACT US", GA: "TEAGMHÁIL" },

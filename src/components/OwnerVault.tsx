@@ -1,37 +1,87 @@
 "use client";
 
 import { useState } from "react";
-import { useSecurity } from "@/kernel/SecurityKernel";
+import { EncryptionEngine } from "@/lib/EncryptionEngine";
 
 export function OwnerVault() {
-  const { isAuthorized } = useSecurity();
-  const [content, setContent] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [ghostKey, setGhostKey] = useState("");
+  const [vaultData, setVaultData] = useState<string | null>(null);
+  const [isLocked, setIsLocked] = useState(false);
 
-  const handleAccess = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setContent("L-CODE_GUARDIAN_STREAMS_ACTIVE // PRE-ENCRYPTION_LAYER_ARMED");
-      setLoading(false);
-    }, 800);
+  // Hardcoded zašifrovaný payload (v reálu to přijde z DB)
+  // Obsahuje cenné leady a statistiky
+  const ENCRYPTED_PAYLOAD = "VGFkeSBieSBieWwgYmFzZTY0IHphxaFpZnJvdmFuw70gcGF5bG9hZA==";
+
+  const handleUnlock = async () => {
+    if (!ghostKey) return;
+
+    setIsLocked(true); // Aktivace L-CODE DOOMSDAY obrany během výpočtu
+    const decrypted = await EncryptionEngine.decryptVault(ENCRYPTED_PAYLOAD, ghostKey);
+
+    if (decrypted) {
+      setVaultData(decrypted);
+      setGhostKey(""); // Okamžité zametení klíče z RAM
+    } else {
+      // OPACITY LOCK - Špatný klíč
+      alert("L-CODE GUARDIAN: Přístup odepřen. *smrk*");
+      setGhostKey("");
+    }
+    setIsLocked(false);
   };
 
-  if (!isAuthorized) return null;
-
   return (
-    <div className="mt-8 w-full max-w-md rounded-md border border-[#00e5ff] bg-black p-6 text-xs font-mono shadow-2xl shadow-[#00e5ff]/10 text-white">
-      <div className="flex items-center justify-between gap-2 text-[#00e5ff]">
-        <div className="flex items-center gap-2">
-          <span className={`h-2 w-2 rounded-full ${loading ? "animate-ping" : ""} bg-[#00e5ff]`}></span>
-          ENCRYPTED DATA STREAM
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="nav-link-ultra text-[#9E3FFD] flex items-center gap-2"
+      >
+        <span className="w-2 h-2 rounded-full bg-[#9E3FFD] animate-pulse"></span>
+        VAULT
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-14 right-0 w-80 bg-white/90 backdrop-blur-3xl border border-black/10 rounded-2xl p-6 shadow-2xl shadow-black/10 z-[6000]">
+          <div className="text-xs font-black tracking-widest text-[#16163F] mb-4 flex justify-between items-center">
+            <span>L-CODE GUARDIAN</span>
+            <span className="text-[#9E3FFD]">v2.0</span>
+          </div>
+
+          {!vaultData ? (
+            <div className="space-y-4">
+              <input
+                type="password"
+                placeholder="Ghost Key..."
+                value={ghostKey}
+                onChange={(e) => setGhostKey(e.target.value)}
+                disabled={isLocked}
+                className="w-full bg-black/5 border-none rounded-lg p-3 text-sm font-black text-[#16163F] outline-none focus:ring-2 focus:ring-[#9E3FFD]"
+              />
+              <button
+                onClick={handleUnlock}
+                disabled={isLocked}
+                className="w-full bg-[#16163F] text-white rounded-lg p-3 text-xs font-black tracking-widest uppercase hover:bg-[#9E3FFD] transition-colors"
+              >
+                {isLocked ? 'DECRYPTING...' : 'UNLOCK'}
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-xs font-mono text-green-700">
+                // DECRYPTED SECRETS //
+                <br />Leady: 14 novych
+                <br />Konverze: +24%
+              </div>
+              <button
+                onClick={() => { setVaultData(null); setIsOpen(false); }}
+                className="w-full bg-red-500/10 text-red-600 rounded-lg p-3 text-xs font-black tracking-widest uppercase hover:bg-red-500 hover:text-white transition-colors"
+              >
+                FLUSH & LOCK
+              </button>
+            </div>
+          )}
         </div>
-        <button onClick={handleAccess} className="px-2 py-1 border border-[#00e5ff] hover:bg-[#00e5ff] hover:text-black transition-all uppercase">
-          {content ? "Relock" : "Unlock"}
-        </button>
-      </div>
-      <div className="mt-4 break-all text-neutral-500">
-        {content ? <span className="text-white animate-in fade-in duration-500">{content}</span> : "[REDACTED // BLOB_0X8F12...]"}
-      </div>
+      )}
     </div>
   );
 }

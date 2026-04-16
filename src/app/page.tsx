@@ -1,17 +1,9 @@
-'use client';
-
-import dynamic from 'next/dynamic';
-
-// Importujeme náš Master kus dynamicky - vypneme SSR, aby to nepadalo při buildu
-const BelianskyMovingMaster = dynamic(
-  () => import('@/components/BelianskyMovingMaster'),
-  { ssr: false }
-);
+import React from 'react';
+import HomeClient from '@/components/HomeClient';
+import { translations } from '@/lib/translations';
 
 export default function Home() {
   return (
-    <main>
-      <BelianskyMovingMaster />
-    </main>
+    <HomeClient translations={translations} />
   );
 }
