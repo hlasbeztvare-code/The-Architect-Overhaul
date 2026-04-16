@@ -38,6 +38,7 @@ export function LanguageKernel({ children }: { children: React.ReactNode }) {
 
         updateLanguage(detected);
       } catch (error) {
+        console.error("L-CODE GUARDIAN: Language Kernel regional audit failed:", error);
         updateLanguage('EN');
       } finally {
         setIsLoading(false);
